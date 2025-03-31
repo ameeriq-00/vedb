@@ -10,6 +10,11 @@ use Filament\Tables;
 use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Support\Facades\Auth;
+use App\Filament\Resources\GovernmentVehicleResource\RelationManagers\AccessoriesRelationManager;
+use App\Filament\Resources\GovernmentVehicleResource\RelationManagers\AttachmentsRelationManager;
+use App\Filament\Resources\GovernmentVehicleResource\RelationManagers\TransfersRelationManager;
+use App\Filament\Resources\GovernmentVehicleResource\RelationManagers\DefectsRelationManager;
+
 
 
 class GovernmentVehicleResource extends Resource
@@ -68,7 +73,18 @@ class GovernmentVehicleResource extends Resource
 
         return $query;
     }
+    public static function getRelations(): array
+    {
+        return [
+            // سنضيف هنا Relation Managers لاحقًا: المرفقات، الحالة، المناقلات...
+            AccessoriesRelationManager::class,
+            AttachmentsRelationManager::class,
+            TransfersRelationManager::class,
+            DefectsRelationManager::class,
 
+
+        ];
+    }
     public static function getPages(): array
     {
         return [

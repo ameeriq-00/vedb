@@ -55,4 +55,23 @@ class GovernmentVehicle extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function accessories()
+    {
+       return $this->belongsToMany(Accessory::class, 'accessory_government_vehicle');
+    }
+    public function attachments()
+    {
+        return $this->hasMany(\App\Models\Attachment::class, 'government_vehicle_id');
+    }
+    public function transfers()
+    {
+        return $this->hasMany(\App\Models\Transfer::class, 'government_vehicle_id');
+    }
+    public function defects()
+    {
+        return $this->belongsToMany(\App\Models\Defect::class, 'defect_government_vehicle');
+    }
+
+
+
 }
