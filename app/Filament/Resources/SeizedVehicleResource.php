@@ -20,6 +20,9 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Actions\Action;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\SeizedVehicleStatusUpdates;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\Attachments;
+
 
 class SeizedVehicleResource extends Resource
 {
@@ -116,6 +119,8 @@ class SeizedVehicleResource extends Resource
     {
         return [
             // سنضيف هنا Relation Managers لاحقًا: المرفقات، الحالة، المناقلات...
+            SeizedVehicleStatusUpdates::class,
+            Attachments::class,
         ];
     }
 
