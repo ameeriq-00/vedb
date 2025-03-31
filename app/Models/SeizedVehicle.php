@@ -7,14 +7,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Spatie\Activitylog\Traits\LogsActivity;
+use Spatie\Activitylog\LogOptions;
 
 class SeizedVehicle extends Model
 {
     use LogsActivity;
-
-    protected static $logAttributes = ['status', 'condition', 'directorate_id'];
-    protected static $logName = 'seized_vehicle';
-    protected static $logOnlyDirty = true;
 
     protected $fillable = [
         'directorate_id',
@@ -36,6 +33,22 @@ class SeizedVehicle extends Model
         'is_released' => 'boolean',
         'is_external' => 'boolean',
     ];
+
+    public function getActivitylogOptions(): LogOptions
+    {
+        return LogOptions::defaults()
+            ->logOnlyDirty()
+            ->logOnly([
+                'status',
+                'condition',
+                'directorate_id',
+                'legal_article_id',
+                'vehicle_number',
+                'model',
+                'chassis_number',
+            ])
+            ->useLogName('seized_vehicle');
+    }
 
     public function directorate(): BelongsTo
     {

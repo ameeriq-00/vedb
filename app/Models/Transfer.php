@@ -7,38 +7,39 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Spatie\Activitylog\Traits\LogsActivity;
 use Spatie\Activitylog\LogOptions;
 
-class SeizedVehicleStatusUpdate extends Model
+class Transfer extends Model
 {
     use LogsActivity;
 
     protected $fillable = [
         'seized_vehicle_id',
-        'status',
-        'decision_number',
-        'decision_date',
-        'attachment_path',
-        'user_id'
+        'recipient_name',
+        'recipient_identity_number',
+        'to_directorate_id',
+        'user_id',
+        'transfer_date',
     ];
 
     protected $casts = [
-        'decision_date' => 'date',
+        'transfer_date' => 'date',
     ];
 
     public function getActivitylogOptions(): LogOptions
     {
         return LogOptions::defaults()
             ->logOnlyDirty()
-            ->logOnly([
-                'status',
-                'decision_number',
-                'decision_date'
-            ])
-            ->useLogName('seized_vehicle_status');
+            ->logOnly(['recipient_name', 'recipient_identity_number', 'to_directorate_id'])
+            ->useLogName('transfer');
     }
 
-    public function vehicle(): BelongsTo
+    public function seizedVehicle(): BelongsTo
     {
-        return $this->belongsTo(SeizedVehicle::class, 'seized_vehicle_id');
+        return $this->belongsTo(SeizedVehicle::class);
+    }
+
+    public function toDirectorate(): BelongsTo
+    {
+        return $this->belongsTo(Directorate::class, 'to_directorate_id');
     }
 
     public function user(): BelongsTo
