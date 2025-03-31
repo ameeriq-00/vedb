@@ -94,6 +94,7 @@ class SeizedVehicleResource extends Resource
     public static function table(Tables\Table $table): Tables\Table
     {
         return $table
+            
             ->columns([
                 TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('vehicle_number')->label('رقم العجلة')->searchable(),
