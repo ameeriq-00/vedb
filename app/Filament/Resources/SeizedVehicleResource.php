@@ -22,6 +22,9 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Actions\Action;
 use App\Filament\Resources\SeizedVehicleResource\RelationManagers\SeizedVehicleStatusUpdates;
 use App\Filament\Resources\SeizedVehicleResource\RelationManagers\Attachments;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\Transfers;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\EditRequests;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\ActivityLogs;
 
 
 class SeizedVehicleResource extends Resource
@@ -121,6 +124,9 @@ class SeizedVehicleResource extends Resource
             // سنضيف هنا Relation Managers لاحقًا: المرفقات، الحالة، المناقلات...
             SeizedVehicleStatusUpdates::class,
             Attachments::class,
+            Transfers::class,
+            EditRequests::class,
+            ActivityLogs::class,
         ];
     }
 
