@@ -25,6 +25,8 @@ use App\Filament\Resources\SeizedVehicleResource\RelationManagers\Attachments;
 use App\Filament\Resources\SeizedVehicleResource\RelationManagers\Transfers;
 use App\Filament\Resources\SeizedVehicleResource\RelationManagers\EditRequests;
 use App\Filament\Resources\SeizedVehicleResource\RelationManagers\ActivityLogs;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\DefectsRelationManager;
+use App\Filament\Resources\SeizedVehicleResource\RelationManagers\AccessoriesRelationManager;
 
 
 class SeizedVehicleResource extends Resource
@@ -94,7 +96,7 @@ class SeizedVehicleResource extends Resource
     public static function table(Tables\Table $table): Tables\Table
     {
         return $table
-            
+
             ->columns([
                 TextColumn::make('id')->label('ID')->sortable(),
                 TextColumn::make('vehicle_number')->label('رقم العجلة')->searchable(),
@@ -128,6 +130,10 @@ class SeizedVehicleResource extends Resource
             Transfers::class,
             EditRequests::class,
             ActivityLogs::class,
+            AccessoriesRelationManager::class,
+            DefectsRelationManager::class,
+
+
         ];
     }
 
