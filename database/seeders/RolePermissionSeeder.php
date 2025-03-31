@@ -10,32 +10,30 @@ class RolePermissionSeeder extends Seeder
 {
     public function run(): void
     {
-        // تأكد من وجود الصلاحيات
         $permissions = Permission::pluck('name')->toArray();
 
-        // توزيع الصلاحيات حسب الدور
         $rolesPermissions = [
             'مدخل بيانات' => [
-                'view_seized_vehicle', 'create_seized_vehicle', 'update_seized_vehicle',
-                'view_seized_vehicle_status_updates', 'create_seized_vehicle_status_updates',
-                'view_seized_vehicle_attachments', 'create_seized_vehicle_attachments',
-                'view_seized_vehicle_transfers', 'create_seized_vehicle_transfers',
-                'view_seized_vehicle_edit_requests', 'create_seized_vehicle_edit_requests',
+                'view_seizedvehicle', 'create_seizedvehicle', 'update_seizedvehicle',
+                'view_seizedvehicle_statusupdates', 'create_seizedvehicle_statusupdates',
+                'view_seizedvehicle_attachments', 'create_seizedvehicle_attachments',
+                'view_seizedvehicle_transfers', 'create_seizedvehicle_transfers',
+                'view_seizedvehicle_editrequests', 'create_seizedvehicle_editrequests',
             ],
             'مدقق' => [
-                'view_seized_vehicle', 'update_seized_vehicle',
-                'view_seized_vehicle_status_updates', 'create_seized_vehicle_status_updates',
-                'view_seized_vehicle_attachments',
-                'view_seized_vehicle_transfers',
-                'view_seized_vehicle_edit_requests', 'update_seized_vehicle_edit_requests',
-                'view_activity_logs',
+                'view_seizedvehicle', 'update_seizedvehicle',
+                'view_seizedvehicle_statusupdates', 'create_seizedvehicle_statusupdates',
+                'view_seizedvehicle_attachments',
+                'view_seizedvehicle_transfers',
+                'view_seizedvehicle_editrequests', 'update_seizedvehicle_editrequests',
+                'view_seizedvehicle_activitylogs',
             ],
             'قِسم الآليات' => [
-                'view_seized_vehicle', 'view_seized_vehicle_transfers',
-                'view_government_vehicle', 'create_government_vehicle', 'update_government_vehicle',
+                'view_seizedvehicle', 'view_seizedvehicle_transfers',
+                'view_governmentvehicle', 'create_governmentvehicle', 'update_governmentvehicle',
             ],
             'مستلم' => [
-                'view_seized_vehicle', 'view_seized_vehicle_transfers',
+                'view_seizedvehicle', 'view_seizedvehicle_transfers',
             ],
             'مدير النظام' => $permissions,
         ];
